@@ -4,22 +4,23 @@ FindNonMatchingDocuments is a .NET application designed to identify and process 
 
 ## Configuration
 The application's behavior is driven by parameters defined in the appsettings.json file. Below is a detailed description of these parameters:
+
 appsettings.json Parameters
-• FilePath: The root directory path where the document search begins.
-• FileSearchPatterns: An array of file patterns (e.g., *.pdf, *.docx, *.jpg, *.mpg) to search for within the specified directory.
-• MaxAgeYears: The maximum age (in years) of the documents to be considered. Documents older than this age will be flagged.
-• Excludes: An array of objects specifying exclusion rules for folders and their subfolders, with different levels of exclusion.
-  - Keys: 
+- **FilePath**: The root directory path where the document search begins.
+- **FileSearchPatterns**: An array of file patterns (e.g., *.pdf, *.docx, *.jpg, *.mpg) to search for within the specified directory.
+- **MaxAgeYears**: The maximum age (in years) of the documents to be considered. Documents older than this age will be flagged.
+- **Excludes**: An array of objects specifying exclusion rules for folders and their subfolders, with different levels of exclusion.
+  - **Key**: 
       Substring that is contained in the full file path. Folders are splitted with \\
-  - Values:
+  - **Value**:
     0 = Excluding Folder
     1 = Including Files in Folder, but Excluding Subfolders
     2 = Including Files in Subfolders, but Excluding SubFolders of Subfolders
-•	ExcludeFolderNameRexExPatterns: An array of regular expressions to match folder names that should be excluded from the search.
-•	ExecuteCommand: The command to be executed for each document that meets the search criteria. For example a command to rename the file or open the file. The FilePath will be added as argument to the command.
+- **ExcludeFolderNameRexExPatterns**: An array of regular expressions to match folder names that should be excluded from the search.
+- **ExecuteCommand**: The command to be executed for each document that meets the search criteria. For example a command to rename the file or open the file. The FilePath will be added as argument to the command.
 
 ## Example appsettings.json
-´´´
+```json
 {
   "FilePath": "P:\\",
   "FileSearchPatterns": [
@@ -82,7 +83,7 @@ appsettings.json Parameters
   ],
   "ExecuteCommand": ""
 }
-´´´
+```
 
 ## Getting Started for development
 1.	Ensure you have .NET 8.0 Runtime SDK installed on your machine.

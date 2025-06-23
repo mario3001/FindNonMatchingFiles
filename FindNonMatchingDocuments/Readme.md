@@ -4,24 +4,25 @@ FindNonMatchingDocuments is a .NET application designed to identify and process 
 
 ## Configuration
 The application's behavior is driven by parameters defined in the appsettings.json file. Below is a detailed description of these parameters:
+
 appsettings.json Parameters
-•	FilePath: The root directory path where the document search begins.
-•	FileSearchPatterns: An array of file patterns (e.g., *.pdf, *.docx, *.jpg, *.mpg) to search for within the specified directory.
-•	FilePatternRegex: A regular expression pattern that documents must match to be considered for processing. This pattern is used to identify documents that do not adhere to a specific naming convention.
-  - The sample ist for a date pattern in the format e.g. "2022-01-01 Something" or "2022-01--- Something" or "198x-12--- Something" or "19xx------ Something"
-•	MaxAgeYears: The maximum age (in years) of the documents to be considered. Documents older than this age will be flagged.
-•	Excludes: An array of objects specifying exclusion rules for folders and their subfolders, with different levels of exclusion.
-  - Keys: 
+- **FilePath**: The root directory path where the document search begins.
+- **FileSearchPatterns**: An array of file patterns (e.g., *.pdf, *.docx, *.jpg, *.mpg) to search for within the specified directory.
+- **FilePatternRegex**: A regular expression pattern that documents must match to be considered for processing. This pattern is used to identify documents that do not adhere to a specific naming convention.
+  - The sample is for a date pattern in the format e.g. "2022-01-01 Something" or "2022-01--- Something" or "198x-12--- Something" or "19xx------ Something"
+- **MaxAgeYears**: The maximum age (in years) of the documents (date created) to be considered. Documents older than this age will be ignored.
+- **Excludes**: An array of objects specifying exclusion rules for folders and their subfolders, with different levels of exclusion.
+  - **Key**: 
     Substring that is contained in the full file path. Folders are splitted with \\
-  - Values:
+  - **Value**:
     0 = Excluding Folder
     1 = Including Files in Folder, but Excluding Subfolders
     2 = Including Files in Subfolders, but Excluding SubFolders of Subfolders
-•	ExcludeFolderNameRexExPatterns: An array of regular expressions to match folder names that should be excluded from the search.
-•	ExecuteCommand: The command to be executed for each document that meets the search criteria. For example a command to rename the file or open the file. The FilePath will be added as argument to the command.
+- **ExcludeFolderNameRexExPatterns**: An array of regular expressions to match folder names that should be excluded from the search.
+- **ExecuteCommand**: The command to be executed for each document that meets the search criteria. For example a command to rename the file or open the file. The FilePath will be added as argument to the command.
 
 ## Example appsettings.json
-´´´
+```json
 {
   "FilePath": "Z:\\Dokumente",
   "FileSearchPatterns": ["*.pdf", "*.doc", "*.docx"],
@@ -33,12 +34,12 @@ appsettings.json Parameters
     { "key": "\\Dokumente\\Steuern", "value": 2 }
   ],
   "ExcludeFolderNameRexExPatterns": [
-    "^-.*-$", // Example: - Archiv - 
-    "^_.*_$"  // Example: _Irgendwtwas_ 
+    "^-.*-$", // Example: - Archive - 
+    "^_.*_$"  // Example: _Something_ 
   ],
   "ExecuteCommand": "PdfFileRenameFromContent.Rules.Specific.exe"
 }
-´´´
+```
 
 ## Getting Started for development
 1.	Ensure you have .NET 8.0 Runtime SDK installed on your machine.

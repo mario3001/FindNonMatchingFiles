@@ -55,6 +55,7 @@ For detailed configuration examples, see the individual project README files:
 ## Configuration Examples
 
 ### Basic Document Search
+All parameters described under: [FindNonMatchingDocuments Configuration](FindNonMatchingDocuments/Readme.md#configuration)
 ```json
 {
   "FilePath": "C:\\Documents",
@@ -66,6 +67,7 @@ For detailed configuration examples, see the individual project README files:
 ```
 
 ### Media Collection Processing
+All parameters described under: [FindNonMatchingPhotos Configuration](FindNonMatchingPhotos/Readme.md#configuration)
 ```json
 {
   "FilePath": "D:\\Photos",
