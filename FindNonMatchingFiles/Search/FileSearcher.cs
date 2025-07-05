@@ -79,7 +79,7 @@ namespace FindNonMatchingFiles.Search
             }
 
             var matchingExclude = excludes.SingleOrDefault(x => subDirectoryPath.Contains(x.Key));
-            var subfolderDepth = !matchingExclude.IsDefault() ? subDirectoryPath.Substring(matchingExclude.Key.Length).Count(x => x == '\\') : 0;
+            var subfolderDepth = !matchingExclude.IsDefault() ? subDirectoryPath[matchingExclude.Key.Length..].Count(x => x == '\\') : 0;
 
             if (!matchExcludeFolderRegEx && (matchingExclude.IsDefault() || subfolderDepth < matchingExclude.Value))
             {

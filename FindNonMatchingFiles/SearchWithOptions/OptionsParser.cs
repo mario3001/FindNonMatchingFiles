@@ -16,16 +16,12 @@ public class OptionsParser
             Excludes = configurationRoot.GetSection("Excludes").GetChildren()
                 .ToDictionary(x => x.GetChildren().First(y => y.Key == "key").Value!,
                     x => Convert.ToInt32(x.GetChildren().First(y => y.Key == "value").Value)),
-            ExcludeFolderRegExPatterns = configurationRoot.GetSection("ExcludeFolderNameRexExPatterns").GetChildren()
-                .Select(x => x.Value!)
-                .ToList(),
-            ExcludeFileRegExPatterns = configurationRoot.GetSection("ExcludeFileNameRexExPatterns").GetChildren()
-                .Select(x => x.Value!)
-                .ToList(),
-            SearchPatterns = configurationSections.First(x => x.Key == "FileSearchPatterns").GetChildren().Select(x => x.Value!).ToList(),
+            ExcludeFolderRegExPatterns = [.. configurationRoot.GetSection("ExcludeFolderNameRexExPatterns").GetChildren().Select(x => x.Value!)],
+            ExcludeFileRegExPatterns = [.. configurationRoot.GetSection("ExcludeFileNameRexExPatterns").GetChildren().Select(x => x.Value!)],
+            SearchPatterns = [.. configurationSections.First(x => x.Key == "FileSearchPatterns").GetChildren().Select(x => x.Value!)],
             ExecuteCommands = configurationSections.FirstOrDefault(x => x.Key == "ExecuteCommands")?.GetChildren()
                 .Select(x => x.Value!)
-                .ToArray() ?? new List<string>().ToArray(),
+                .ToArray() ?? [],
             FilePatternRegex = configurationSections.First(x => x.Key == "FilePatternRegex").Value!
         };
 

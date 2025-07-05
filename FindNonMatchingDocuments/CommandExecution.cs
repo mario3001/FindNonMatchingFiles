@@ -7,7 +7,7 @@ public class CommandExecution
 {
     public void Execute(List<FileInfo> fileInfos, Options options)
     {
-        if (fileInfos.Count <= 0 || !options.ExecuteCommands.Any())
+        if (fileInfos.Count <= 0 || options.ExecuteCommands.Length == 0)
         {
             return;
         }
